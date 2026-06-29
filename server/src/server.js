@@ -1,15 +1,10 @@
 import app from './app.js';
-import dotenv from 'dotenv';
-import path from 'path';
-import { fileURLToPath } from 'url';
-
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
-dotenv.config({ path: path.join(__dirname, '../.env') });
 
 const PORT = process.env.PORT || 3000;
 
-const server = app.listen(PORT, () => {
+const server = app.listen(PORT, '0.0.0.0', () => {
   console.log(`Server listening on port ${PORT}`);
+  console.log(`CLIENT_URL: ${process.env.CLIENT_URL || process.env.RENDER_EXTERNAL_URL || 'not set'}`);
 });
 
 server.on('error', (err) => {

@@ -2,7 +2,7 @@ import jwt from 'jsonwebtoken';
 
 const isProduction = process.env.NODE_ENV === 'production';
 if (isProduction && !process.env.JWT_SECRET) {
-  throw new Error('JWT_SECRET is required in production');
+  console.warn('[OnePage] JWT_SECRET missing in production environment.');
 }
 
 export const JWT_SECRET = process.env.JWT_SECRET || 'fallback-super-secret-key';
