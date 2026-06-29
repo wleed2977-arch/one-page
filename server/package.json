@@ -1,0 +1,36 @@
+{
+  "name": "onepage-server",
+  "version": "1.0.0",
+  "description": "Server for OnePage",
+  "main": "src/app.js",
+  "type": "module",
+  "scripts": {
+    "dev": "node --watch src/server.js",
+    "start": "node src/server.js",
+    "prisma:generate": "prisma generate",
+    "prisma:migrate": "prisma migrate dev"
+  },
+  "dependencies": {
+    "@prisma/client": "^6.0.0",
+    "archiver": "^8.0.0",
+    "bcrypt": "^6.0.0",
+    "cloudinary": "^2.10.0",
+    "compression": "^1.8.1",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.2",
+    "express-rate-limit": "^8.5.2",
+    "helmet": "^8.2.0",
+    "jsonwebtoken": "^9.0.3",
+    "morgan": "^1.11.0",
+    "multer": "^2.2.0",
+    "nodemailer": "^9.0.1",
+    "zod": "^3.25.76"
+  },
+  "devDependencies": {
+    "prisma": "^6.0.0"
+  },
+  "author": "Muamel Tahsin",
+  "license": "MIT"
+}

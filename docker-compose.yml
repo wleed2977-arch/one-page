@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: onepage
+      POSTGRES_PASSWORD: onepagepassword
+      POSTGRES_DB: onepagedb
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  server:
+    build:
+      context: ./server
+    ports:
+      - "3000:3000"
+    environment:
+      - DATABASE_URL=postgresql://onepage:onepagepassword@db:5432/onepagedb?schema=public
+      - JWT_SECRET=supersecretjwtkey
+    depends_on:
+      - db
+
+  client:
+    build:
+      context: ./client
+    ports:
+      - "5173:5173"
+    environment:
+      - VITE_API_URL=http://localhost:3000
+
+volumes:
+  postgres_data:

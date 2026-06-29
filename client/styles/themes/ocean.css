@@ -1,0 +1,34 @@
+html[data-theme="ocean"] {
+  --color-primary: #0284c7;
+  --color-secondary: #38bdf8;
+  --color-background: #e0f2fe;
+  --color-surface: #ffffff;
+  --color-surface-elevated: #f0f9ff;
+  --color-border: #bae6fd;
+  --color-text-primary: #0c4a6e;
+  --color-text-secondary: #0369a1;
+  --theme-hero-bg: linear-gradient(180deg, #bae6fd 0%, #e0f2fe 40%, #f0f9ff 100%);
+  --theme-page-bg: linear-gradient(180deg, #e0f2fe 0%, #f0f9ff 50%, #e0f2fe 100%);
+  --theme-accent-glow: rgba(2, 132, 199, 0.15);
+  --theme-canvas-shadow: 0 20px 50px -12px rgba(2, 132, 199, 0.15);
+  --theme-card-shadow: 0 2px 12px rgba(2, 132, 199, 0.08);
+  --theme-section-alt: #f0f9ff;
+  --radius-card: 18px;
+}
+
+html[data-theme="ocean"] .widget-hero {
+  border-bottom-color: #bae6fd;
+}
+
+html[data-theme="ocean"] .widget-projects .project-card {
+  border-color: #bae6fd;
+  background: #f0f9ff;
+}
+
+html[data-theme="ocean"] .widget-skills .skill-fill {
+  background: linear-gradient(90deg, #0284c7, #38bdf8);
+}
+
+html[data-theme="ocean"] .public-page__canvas {
+  border: 1px solid #bae6fd;
+}

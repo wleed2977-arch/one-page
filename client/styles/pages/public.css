@@ -1,0 +1,121 @@
+.public-page {
+  min-height: 100vh;
+  background: var(--theme-page-bg, var(--color-background));
+  color: var(--color-text-primary);
+  padding-bottom: 2rem;
+  overflow-x: hidden;
+}
+
+.public-page__header {
+  padding: 0.875rem clamp(1rem, 4vw, 2rem);
+  border-bottom: 1px solid var(--color-border);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--color-surface);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.public-page__brand {
+  font-weight: var(--font-semibold);
+  font-family: var(--font-display);
+  color: var(--color-text-primary);
+  font-size: clamp(var(--font-14), 3.5vw, var(--font-16));
+  letter-spacing: var(--theme-headline-tracking, -0.01em);
+}
+
+.public-page__canvas {
+  max-width: min(820px, 100%);
+  margin: clamp(1rem, 3vw, 2rem) auto 0;
+  background: var(--color-surface);
+  min-height: calc(100vh - 120px);
+  border-radius: var(--theme-canvas-radius, 20px);
+  box-shadow: var(--theme-canvas-shadow, var(--shadow-lg));
+  border: 1px solid var(--color-border);
+  overflow: hidden;
+}
+
+.public-page__canvas .widget-hero:first-child {
+  margin-top: 0;
+}
+
+.public-page__canvas > *:nth-child(even) {
+  background: var(--theme-section-alt, var(--color-background));
+}
+
+.public-page__brand:hover {
+  color: var(--color-primary);
+}
+
+.public-page__canvas .empty-state {
+  padding: 4rem 2rem;
+  text-align: center;
+  color: var(--color-text-secondary);
+}
+
+.public-page__canvas .empty-state h3 {
+  color: var(--color-text-primary);
+  margin-bottom: 0.5rem;
+}
+
+/* Gallery lightbox */
+.gallery-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: rgba(0, 0, 0, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  cursor: pointer;
+}
+
+.gallery-lightbox img {
+  max-width: 100%;
+  max-height: 90vh;
+  object-fit: contain;
+  border-radius: var(--radius-md);
+}
+
+.gallery-lightbox__close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: rgba(255, 255, 255, 0.15);
+  border: none;
+  color: #fff;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.public-page .gallery-grid img {
+  cursor: zoom-in;
+}
+
+@media (max-width: 768px) {
+  .public-page {
+    padding-bottom: 0;
+  }
+
+  .public-page__canvas {
+    margin: 0;
+    border-radius: 0;
+    border-left: none;
+    border-right: none;
+    box-shadow: none;
+    min-height: calc(100vh - 53px);
+  }
+
+  .public-page__header {
+    padding: 0.75rem 1rem;
+  }
+}

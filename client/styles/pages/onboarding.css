@@ -1,0 +1,110 @@
+.onboarding-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem 1rem;
+  background: var(--color-background);
+}
+
+.onboarding-progress {
+  width: 100%;
+  max-width: 560px;
+  margin-bottom: 2rem;
+}
+
+.onboarding-progress-bar {
+  height: 6px;
+  background: var(--color-border);
+  border-radius: 3px;
+  overflow: hidden;
+  margin-bottom: 0.5rem;
+}
+
+.onboarding-progress-fill {
+  height: 100%;
+  background: var(--color-primary);
+  border-radius: 3px;
+  transition: width 0.3s ease;
+}
+
+.onboarding-progress-label {
+  font-size: var(--font-14);
+  color: var(--color-text-secondary);
+  text-align: center;
+}
+
+.onboarding-card {
+  width: 100%;
+  max-width: 560px;
+}
+
+.onboarding-step-title {
+  margin-bottom: 0.5rem;
+}
+
+.onboarding-step-desc {
+  color: var(--color-text-secondary);
+  margin-bottom: 1.5rem;
+}
+
+.onboarding-actions {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+  justify-content: space-between;
+}
+
+.onboarding-theme-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+}
+
+.onboarding-theme-card {
+  padding: 1rem;
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  text-align: center;
+  transition: var(--transition-fast);
+  background: var(--color-surface);
+}
+
+.onboarding-theme-card:hover,
+.onboarding-theme-card.selected {
+  border-color: var(--color-primary);
+  background: rgba(79, 70, 229, 0.05);
+}
+
+.onboarding-theme-swatch {
+  width: 100%;
+  height: 48px;
+  border-radius: var(--radius-sm);
+  margin-bottom: 0.5rem;
+}
+
+.onboarding-preview {
+  border: 1px solid var(--color-border);
+  border-radius: var(--theme-canvas-radius, var(--radius-lg));
+  overflow: hidden;
+  max-height: 400px;
+  overflow-y: auto;
+  background: var(--theme-page-bg, var(--color-background));
+  box-shadow: var(--theme-card-shadow, none);
+}
+
+.onboarding-slug-preview {
+  font-size: var(--font-14);
+  color: var(--color-text-secondary);
+  margin-top: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  background: var(--color-background);
+  border-radius: var(--radius-sm);
+}
+
+@media (max-width: 480px) {
+  .onboarding-theme-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

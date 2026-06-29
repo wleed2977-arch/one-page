@@ -1,0 +1,131 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model User {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  password  String
+  name      String?
+  picture   String?
+  role      String   @default("user") // 'user', 'admin'
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  pages     Page[]
+  profile   Profile?
+  projects  Project[]
+  skills    Skill[]
+  socials   SocialLink[]
+  gallery   GalleryImage[]
+  messages  Message[]
+}
+
+model Page {
+  id          String   @id @default(uuid())
+  slug        String   @unique
+  title       String
+  description String?
+  themeName   String   @default("light")
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  themeId     String?
+  theme       Theme?   @relation(fields: [themeId], references: [id])
+  widgets     Widget[]
+  analytics   AnalyticsRecord[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Widget {
+  id        String   @id @default(uuid())
+  type      String   // 'profile', 'social', 'skills', 'projects', 'gallery', 'contact'
+  order     Int      @default(0)
+  visible   Boolean  @default(true)
+  data      Json     // stores the widget specific data fallback
+  pageId    String
+  page      Page     @relation(fields: [pageId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Profile {
+  id        String   @id @default(uuid())
+  fullName  String?
+  username  String   @unique
+  jobTitle  String?
+  bio       String?
+  avatar    String?
+  resume    String?
+  email     String?
+  phone     String?
+  location  String?
+  website   String?
+  onboardingCompleted Boolean @default(false)
+  userId    String   @unique
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Project {
+  id          String   @id @default(uuid())
+  title       String
+  description String?
+  image       String?
+  link        String?
+  technologies String? // Comma separated or JSON array
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Skill {
+  id        String   @id @default(uuid())
+  name      String
+  level     Int      @default(50)
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model SocialLink {
+  id        String   @id @default(uuid())
+  platform  String   // github, linkedin, etc.
+  url       String
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model GalleryImage {
+  id        String   @id @default(uuid())
+  url       String
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Message {
+  id        String   @id @default(uuid())
+  name      String
+  email     String
+  content   String
+  isRead    Boolean  @default(false)
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+}
+
+model Theme {
+  id        String   @id @default(uuid())
+  name      String   // e.g., 'Linear Dark', 'Vercel Light'
+  config    Json     // colors, fonts
+  pages     Page[]
+}
+
+model AnalyticsRecord {
+  id        String   @id @default(uuid())
+  pageId    String
+  page      Page     @relation(fields: [pageId], references: [id], onDelete: Cascade)
+  views     Int      @default(1)
+  date      DateTime @default(now())
+}

@@ -1,0 +1,92 @@
+:root {
+  /* Grid System Variables */
+  --grid-columns-desktop: 12;
+  --grid-gap-desktop: 24px;
+  --container-max-width: 1280px;
+
+  --grid-columns-tablet: 8;
+  --grid-gap-tablet: 20px;
+
+  --grid-columns-mobile: 4;
+  --grid-gap-mobile: 16px;
+
+  /* Spacing Scale */
+  --spacing-4: 4px;
+  --spacing-8: 8px;
+  --spacing-12: 12px;
+  --spacing-16: 16px;
+  --spacing-20: 20px;
+  --spacing-24: 24px;
+  --spacing-32: 32px;
+  --spacing-40: 40px;
+  --spacing-48: 48px;
+  --spacing-64: 64px;
+
+  /* Border Radius */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  
+  --radius-card: 16px;
+  --radius-button: 12px;
+  --radius-input: 12px;
+  --radius-modal: 20px;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05);
+
+  /* Typography */
+  --font-primary: 'Inter', sans-serif;
+  
+  /* Font Sizes */
+  --font-12: 12px;
+  --font-14: 14px;
+  --font-16: 16px;
+  --font-18: 18px;
+  --font-20: 20px;
+  --font-24: 24px;
+  --font-32: 32px;
+  --font-40: 40px;
+  --font-48: 48px;
+
+  /* Font Weights */
+  --font-normal: 400;
+  --font-medium: 500;
+  --font-semibold: 600;
+  --font-bold: 700;
+
+  /* Animations */
+  --transition-fast: 150ms ease;
+  --transition-normal: 200ms ease;
+  --transition-slow: 300ms ease;
+
+  /* Light Theme (Default) */
+  --color-primary: #4F46E5;
+  --color-secondary: #6366F1;
+  --color-success: #10B981;
+  --color-warning: #F59E0B;
+  --color-danger: #EF4444;
+  
+  --color-background: #F8FAFC;
+  --color-surface: #FFFFFF;
+  --color-surface-elevated: #FFFFFF;
+  --color-border: #E5E7EB;
+  
+  --color-text-primary: #111827;
+  --color-text-secondary: #6B7280;
+
+  /* Theme layout tokens (overridden per theme) */
+  --theme-section-padding: clamp(2.5rem, 6vw, 4rem) clamp(1.25rem, 4vw, 2rem);
+  --theme-hero-padding: clamp(3rem, 8vw, 5.5rem) clamp(1.25rem, 4vw, 2rem);
+  --theme-canvas-radius: clamp(12px, 2vw, 20px);
+  --theme-canvas-shadow: 0 20px 50px -12px rgba(0, 0, 0, 0.12);
+  --theme-card-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+  --theme-section-alt: var(--color-background);
+  --theme-headline-tracking: -0.02em;
+  --theme-section-title-size: clamp(1.5rem, 4vw, 2rem);
+  --font-fluid-hero: clamp(2rem, 5vw, 3rem);
+  --font-display: var(--font-primary);
+}

@@ -1,0 +1,23 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: var(--theme-page-bg, var(--color-background));
+  color: var(--color-text-primary);
+  min-height: 100vh;
+  transition: background 0.25s ease, color 0.25s ease;
+}
+
+#app {
+  min-height: 100vh;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}

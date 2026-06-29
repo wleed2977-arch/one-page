@@ -1,0 +1,23 @@
+/* Cards */
+.card {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+}
+
+.card-header {
+  padding: var(--spacing-16) var(--spacing-24);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.card-body {
+  padding: var(--spacing-24);
+}
+
+.card-footer {
+  padding: var(--spacing-16) var(--spacing-24);
+  border-top: 1px solid var(--color-border);
+  background-color: var(--color-background);
+}

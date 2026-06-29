@@ -1,0 +1,57 @@
+html[data-theme="linear"] {
+  --color-primary: #5e6ad2;
+  --color-secondary: #7c85e3;
+  --color-background: #000000;
+  --color-surface: #0a0a0a;
+  --color-surface-elevated: #141414;
+  --color-border: #2a2a2a;
+  --color-text-primary: #f2f2f2;
+  --color-text-secondary: #888888;
+  --theme-hero-bg: linear-gradient(180deg, #111111 0%, #000000 100%);
+  --theme-page-bg: #000000;
+  --theme-accent-glow: rgba(94, 106, 210, 0.22);
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+  --radius-xl: 12px;
+  --radius-card: 8px;
+  --radius-button: 6px;
+  --radius-input: 6px;
+  --theme-canvas-radius: 12px;
+  --theme-canvas-shadow: 0 0 0 1px #2a2a2a;
+  --theme-section-padding: 3.5rem 2rem;
+  --theme-hero-padding: 4.5rem 2rem;
+  --theme-headline-tracking: -0.03em;
+  --theme-section-alt: #050505;
+}
+
+html[data-theme="linear"] .widget-section-title {
+  font-size: var(--font-24);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: var(--font-semibold);
+}
+
+html[data-theme="linear"] .widget-section-title::after {
+  width: 24px;
+  height: 2px;
+}
+
+html[data-theme="linear"] .widget-hero .widget-headline {
+  letter-spacing: var(--theme-headline-tracking);
+}
+
+html[data-theme="linear"] .public-page__canvas {
+  border: 1px solid #2a2a2a;
+}
+
+@media (max-width: 768px) {
+  html[data-theme="linear"] .widget-section-title {
+    font-size: var(--font-18);
+    letter-spacing: 0.06em;
+  }
+
+  html[data-theme="linear"] .widget-hero .widget-headline {
+    font-size: clamp(1.75rem, 6vw, 2.25rem);
+  }
+}

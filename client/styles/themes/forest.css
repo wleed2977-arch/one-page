@@ -1,0 +1,32 @@
+html[data-theme="forest"] {
+  --color-primary: #10b981;
+  --color-secondary: #34d399;
+  --color-background: #0c1222;
+  --color-surface: #1a2332;
+  --color-surface-elevated: #243044;
+  --color-border: #334155;
+  --color-text-primary: #f1f5f9;
+  --color-text-secondary: #94a3b8;
+  --theme-hero-bg: linear-gradient(180deg, #1a2e1a 0%, #0f172a 50%, #0c1222 100%);
+  --theme-page-bg: linear-gradient(180deg, #0f172a 0%, #0c1222 100%);
+  --theme-accent-glow: rgba(16, 185, 129, 0.18);
+  --theme-canvas-radius: 20px;
+  --theme-canvas-shadow: 0 20px 50px -12px rgba(0, 0, 0, 0.4);
+  --theme-card-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
+  --theme-section-alt: #141c28;
+  --radius-card: 20px;
+}
+
+html[data-theme="forest"] .widget-section-title::after {
+  background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+  width: 48px;
+  border-radius: 4px;
+}
+
+html[data-theme="forest"] .widget-skills .skill-fill {
+  background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+}
+
+html[data-theme="forest"] .public-page__canvas {
+  border: 1px solid #334155;
+}

@@ -1,0 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+body {
+  font-family: var(--font-primary);
+  font-size: var(--font-16);
+  line-height: 1.6;
+  color: var(--color-text-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--color-text-primary);
+  font-family: var(--font-primary);
+  font-weight: var(--font-bold);
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+}
+
+h1 { font-size: var(--font-fluid-hero, var(--font-48)); }
+h2 { font-size: clamp(1.5rem, 3.5vw, var(--font-32)); }
+h3 { font-size: clamp(1.125rem, 2.5vw, var(--font-20)); }
+h4 { font-size: var(--font-18); }
+
+p {
+  color: var(--color-text-secondary);
+}
