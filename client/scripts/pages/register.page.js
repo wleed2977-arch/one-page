@@ -14,7 +14,10 @@ export const RegisterPage = {
   render: async () => `
     <div class="auth-page">
       <nav class="auth-nav">
-        <a href="/" class="auth-nav__brand" data-link>OnePage</a>
+        <a href="/" class="auth-nav__brand brand-logo" data-link>
+          <img src="/logo.svg" alt="" class="brand-logo__img" width="32" height="32">
+          <span class="brand-logo__text">OnePage</span>
+        </a>
         <a href="/login" class="btn btn-secondary btn-sm" data-link>Login</a>
       </nav>
       <div class="auth-layout">

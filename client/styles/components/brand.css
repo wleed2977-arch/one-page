@@ -1,0 +1,27 @@
+.brand-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: var(--color-text-primary);
+  text-decoration: none;
+}
+
+.brand-logo__img {
+  display: block;
+  flex-shrink: 0;
+}
+
+.brand-logo__text {
+  font-size: var(--font-18);
+  font-weight: var(--font-bold);
+  letter-spacing: -0.03em;
+}
+
+.brand-logo--sm .brand-logo__text {
+  font-size: var(--font-16);
+}
+
+.brand-logo--sm .brand-logo__img {
+  width: 24px;
+  height: 24px;
+}
