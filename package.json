@@ -2,11 +2,12 @@
   "name": "onepage",
   "version": "1.0.0",
   "description": "OnePage - Personal Website Builder",
+  "type": "module",
   "main": "index.js",
   "scripts": {
     "dev": "concurrently \"npm run dev -w client\" \"npm run dev -w server\"",
-    "build": "npm run build --workspaces",
-    "start": "npm run start -w server"
+    "build": "npm run build -w client && npm run prisma:generate -w server",
+    "start": "node index.js"
   },
   "workspaces": [
     "client",

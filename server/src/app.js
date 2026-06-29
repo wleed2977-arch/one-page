@@ -5,6 +5,7 @@ import rateLimit from 'express-rate-limit';
 import cookieParser from 'cookie-parser';
 import morgan from 'morgan';
 import compression from 'compression';
+import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { ENV } from './config/env.js';
@@ -33,7 +34,9 @@ const devOrigins = [
 ];
 
 app.use(cors({
-  origin: ENV.NODE_ENV === 'production' ? ENV.CLIENT_URL : devOrigins,
+  origin: ENV.NODE_ENV === 'production'
+    ? [ENV.CLIENT_URL, ENV.CLIENT_URL?.replace(/\/$/, '')].filter(Boolean)
+    : devOrigins,
   credentials: true,
 }));
 
@@ -66,14 +69,21 @@ app.use('/api/v1/contact', contactRoutes);
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+
+const clientDist = path.join(__dirname, '../../client/dist');
+const clientSource = path.join(__dirname, '../../client');
+const staticRoot = fs.existsSync(path.join(clientDist, 'index.html'))
+  ? clientDist
+  : clientSource;
+
 app.use('/uploads', express.static(path.join(__dirname, '../uploads')));
-app.use(express.static(path.join(__dirname, '../../client')));
+app.use(express.static(staticRoot));
 
 app.get('*', (req, res, next) => {
   if (req.path.startsWith('/api/')) {
     return sendResponse(res, 404, false, 'API route not found');
   }
-  res.sendFile(path.join(__dirname, '../../client/index.html'));
+  res.sendFile(path.join(staticRoot, 'index.html'));
 });
 
 app.use(errorHandler);
