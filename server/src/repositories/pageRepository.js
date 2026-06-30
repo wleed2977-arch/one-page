@@ -7,6 +7,7 @@ export const findAll = async () => {
 export const findByUserId = async (userId) => {
   return await prisma.page.findFirst({
     where: { userId },
+    orderBy: { updatedAt: 'desc' },
     include: { widgets: { orderBy: { order: 'asc' } } },
   });
 };

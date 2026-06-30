@@ -12,11 +12,24 @@ const EMPTY_STATE_HTML = `
   </div>
 `;
 
+const normalizeWidgetData = (data) => {
+  if (typeof data === 'string') {
+    try {
+      return JSON.parse(data);
+    } catch {
+      return {};
+    }
+  }
+  return data || {};
+};
+
 export const BuilderPage = {
   widgetInstances: [],
   selectedInstance: null,
   isDirty: false,
   pageSlug: '',
+  _loadGen: 0,
+  _hadWidgetsOnLoad: false,
   _beforeUnloadHandler: null,
   _navigateHandler: null,
 
@@ -110,15 +123,86 @@ export const BuilderPage = {
   },
 
   afterRender: async () => {
+    const loadId = ++BuilderPage._loadGen;
     BuilderPage.cleanup();
-    lucide.createIcons();
+    if (typeof lucide !== 'undefined') lucide.createIcons();
     BuilderPage.widgetInstances = [];
     BuilderPage.selectedInstance = null;
     BuilderPage.isDirty = false;
     BuilderPage.pageSlug = '';
+    BuilderPage._hadWidgetsOnLoad = false;
 
     const canvas = document.getElementById('builder-canvas');
     const panel = document.getElementById('properties-panel');
+    if (!canvas || !panel) return;
+
+    const isStale = () => loadId !== BuilderPage._loadGen;
+
+    const mountWidgets = (widgets, openProperties) => {
+      if (!widgets?.length) return false;
+
+      canvas.innerHTML = '';
+      BuilderPage.widgetInstances = [];
+
+      widgets.forEach((w) => {
+        const instance = createWidget(w.type, normalizeWidgetData(w.data));
+        if (!instance) return;
+
+        const el = instance.render();
+        el.addEventListener('click', (ev) => {
+          ev.stopPropagation();
+          openProperties(instance);
+        });
+        canvas.appendChild(el);
+        BuilderPage.widgetInstances.push(instance);
+      });
+
+      if (typeof lucide !== 'undefined') lucide.createIcons();
+      return BuilderPage.widgetInstances.length > 0;
+    };
+
+    const loadSavedPage = async (openProperties) => {
+      let page = null;
+
+      try {
+        const res = await pagesApi.getMyPage();
+        if (isStale()) return;
+        page = res.data?.page || null;
+      } catch (err) {
+        if (!isStale()) {
+          showToast(err.message || 'Could not load saved page', 'error');
+        }
+        return;
+      }
+
+      if (!page) return;
+
+      if (!page.widgets?.length && page.slug) {
+        try {
+          const publicRes = await pagesApi.getPageBySlug(page.slug);
+          if (isStale()) return;
+          if (publicRes.data?.page?.widgets?.length) {
+            page = publicRes.data.page;
+          }
+        } catch {
+          /* keep owner page */
+        }
+      }
+
+      BuilderPage.pageSlug = page.slug || '';
+      BuilderPage._hadWidgetsOnLoad = Boolean(page.widgets?.length);
+
+      const viewBtn = document.getElementById('view-live-btn');
+      if (viewBtn && BuilderPage.pageSlug) viewBtn.hidden = false;
+
+      if (page.themeName) {
+        applyTheme(page.themeName);
+      }
+
+      if (mountWidgets(page.widgets, openProperties)) {
+        BuilderPage.clearDirty();
+      }
+    };
 
     BuilderPage._beforeUnloadHandler = (e) => {
       if (BuilderPage.isDirty) {
@@ -145,7 +229,7 @@ export const BuilderPage = {
     const updateEmptyState = () => {
       if (BuilderPage.widgetInstances.length === 0) {
         canvas.innerHTML = EMPTY_STATE_HTML;
-        lucide.createIcons();
+        if (typeof lucide !== 'undefined') lucide.createIcons();
       }
     };
 
@@ -187,7 +271,9 @@ export const BuilderPage = {
             await BuilderPage.saveWidgets();
             BuilderPage.clearDirty();
           } catch (err) {
-            showToast(err.message || 'Save failed', 'error');
+            if (err.message !== 'Save cancelled') {
+              showToast(err.message || 'Save failed', 'error');
+            }
           }
         },
       });
@@ -234,13 +320,24 @@ export const BuilderPage = {
         await BuilderPage.saveWidgets();
         BuilderPage.clearDirty();
       } catch (err) {
-        showToast(err.message || 'Save failed', 'error');
+        if (err.message !== 'Save cancelled') {
+          showToast(err.message || 'Save failed', 'error');
+        }
       }
     };
 
     BuilderPage.saveWidgets = async () => {
+      if (
+        BuilderPage.widgetInstances.length === 0 &&
+        BuilderPage._hadWidgetsOnLoad &&
+        !window.confirm('Save an empty page? This will remove all widgets from your live site.')
+      ) {
+        throw new Error('Save cancelled');
+      }
+
       const widgets = BuilderPage.widgetInstances.map((w, i) => widgetToPayload(w, i));
       await pagesApi.saveWidgets(widgets);
+      BuilderPage._hadWidgetsOnLoad = widgets.length > 0;
     };
 
     document.querySelectorAll('.builder-widget-item').forEach((item) => {
@@ -259,7 +356,9 @@ export const BuilderPage = {
         BuilderPage.clearDirty();
         showToast('Page saved!', 'success');
       } catch (err) {
-        showToast(err.message || 'Save failed', 'error');
+        if (err.message !== 'Save cancelled') {
+          showToast(err.message || 'Save failed', 'error');
+        }
       }
       btn.disabled = false;
     });
@@ -275,7 +374,7 @@ export const BuilderPage = {
       try {
         exportBtn.disabled = true;
         exportBtn.innerHTML = '<i data-lucide="loader"></i> Exporting...';
-        lucide.createIcons();
+        if (typeof lucide !== 'undefined') lucide.createIcons();
         await BuilderPage.saveWidgets();
         BuilderPage.clearDirty();
 
@@ -310,39 +409,10 @@ export const BuilderPage = {
       } finally {
         exportBtn.disabled = false;
         exportBtn.innerHTML = '<i data-lucide="download"></i> Export';
-        lucide.createIcons();
+        if (typeof lucide !== 'undefined') lucide.createIcons();
       }
     });
 
-    try {
-      const res = await pagesApi.getMyPage();
-      if (res.success && res.data.page) {
-        BuilderPage.pageSlug = res.data.page.slug || '';
-        const viewBtn = document.getElementById('view-live-btn');
-        if (viewBtn && BuilderPage.pageSlug) viewBtn.hidden = false;
-
-        if (res.data.page.themeName) {
-          applyTheme(res.data.page.themeName);
-        }
-        if (res.data.page.widgets?.length) {
-          canvas.innerHTML = '';
-          res.data.page.widgets.forEach((w) => {
-            const instance = createWidget(w.type, w.data);
-            if (instance) {
-              const el = instance.render();
-              el.addEventListener('click', (ev) => {
-                ev.stopPropagation();
-                openPropertiesPanel(instance);
-              });
-              canvas.appendChild(el);
-              BuilderPage.widgetInstances.push(instance);
-            }
-          });
-        }
-        BuilderPage.clearDirty();
-      }
-    } catch (err) {
-      showToast('Could not load saved page', 'error');
-    }
+    await loadSavedPage(openPropertiesPanel);
   },
 };
