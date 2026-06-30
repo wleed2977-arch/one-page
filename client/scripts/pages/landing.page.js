@@ -1,3 +1,5 @@
+import { brandMark, brandFull } from '../utils/brand.js';
+
 const bindLandingLinks = () => {
   document.querySelectorAll('[data-link]').forEach((link) => {
     link.addEventListener('click', (e) => {
@@ -65,10 +67,7 @@ export const LandingPage = {
       <header class="landing-header">
         <div class="landing-container">
           <nav class="landing-nav">
-            <a href="/" class="landing-logo brand-logo" data-link>
-              <img src="/logo.svg" alt="" class="brand-logo__img" width="36" height="36" decoding="async">
-              <span class="brand-logo__text">OnePage</span>
-            </a>
+            ${brandMark({ className: 'landing-logo brand-logo', variant: 'full', size: 44 })}
             <div class="landing-nav__links">
               <a href="/login" class="landing-nav__link" data-link>Login</a>
               <a href="/register" class="btn btn-primary" data-link>Get Started</a>
@@ -81,14 +80,14 @@ export const LandingPage = {
         <section class="landing-hero">
           <div class="landing-container landing-hero__grid">
             <div class="landing-hero__content landing-hero-enter">
-              <span class="landing-eyebrow landing-eyebrow--pulse">
+              <span class="landing-eyebrow">
                 <span class="landing-eyebrow__dot"></span>
                 Personal website builder
               </span>
               <h1>Your portfolio, <span class="landing-gradient-text">one page</span> away</h1>
               <p>Build a clean online CV in minutes. Pick a theme, add your work, and share a link recruiters will remember.</p>
               <div class="landing-hero__actions">
-                <a href="/register" class="btn btn-primary landing-btn-glow" data-link>Get Started Free</a>
+                <a href="/register" class="btn btn-primary" data-link>Get Started Free</a>
                 <a href="/login" class="btn btn-secondary" data-link>Sign in</a>
               </div>
               <div class="landing-stats landing-hero-enter landing-hero-enter--delay">
@@ -108,7 +107,6 @@ export const LandingPage = {
             </div>
             <div class="landing-hero__visual landing-hero-enter landing-hero-enter--delay-2">
               <div class="landing-mockup landing-mockup--float">
-                <div class="landing-mockup__glow" aria-hidden="true"></div>
                 <div class="landing-mockup__chrome">
                   <span class="landing-mockup__dot landing-mockup__dot--red"></span>
                   <span class="landing-mockup__dot landing-mockup__dot--yellow"></span>
@@ -210,23 +208,19 @@ export const LandingPage = {
         </section>
 
         <section class="landing-cta">
-          <div class="landing-cta__glow" aria-hidden="true"></div>
           <div class="landing-container">
             <div class="landing-cta__inner landing-reveal">
-              <img src="/logo.svg" alt="" class="landing-cta__logo" width="48" height="48">
+              ${brandFull(56, 'landing-cta__logo')}
               <h2>Start building today</h2>
               <p>Free to get started. Your portfolio page is a few clicks away.</p>
-              <a href="/register" class="btn btn-primary landing-btn-glow" data-link>Create your page</a>
+              <a href="/register" class="btn btn-primary" data-link>Create your page</a>
             </div>
           </div>
         </section>
       </main>
 
       <footer class="landing-footer">
-        <a href="/" class="brand-logo brand-logo--sm" data-link>
-          <img src="/logo.svg" alt="" class="brand-logo__img" width="24" height="24">
-          <span class="brand-logo__text">OnePage</span>
-        </a>
+        ${brandMark({ className: 'brand-logo brand-logo--sm', size: 28 })}
         <p>Personal website builder for developers</p>
       </footer>
     </div>

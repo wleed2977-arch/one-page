@@ -1,10 +1,9 @@
+import { brandMark } from './brand.js';
+
 export const dashboardNav = (active = 'dashboard') => `
   <aside class="dashboard-sidebar">
     <div style="padding: 0 1.5rem 2rem;">
-      <a href="/dashboard" class="brand-logo brand-logo--sm" data-link>
-        <img src="/logo.svg" alt="" class="brand-logo__img" width="28" height="28">
-        <span class="brand-logo__text">OnePage</span>
-      </a>
+      ${brandMark({ href: '/dashboard', className: 'brand-logo brand-logo--sm', size: 28 })}
     </div>
     <nav class="dashboard-sidebar-nav">
       <a href="/dashboard" class="dashboard-nav-item ${active === 'dashboard' ? 'active' : ''}" data-link><i data-lucide="layout-dashboard"></i> Dashboard</a>

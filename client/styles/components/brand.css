@@ -6,9 +6,29 @@
   text-decoration: none;
 }
 
-.brand-logo__img {
-  display: block;
+.brand-logo__icon {
+  --brand-icon-size: 36px;
+  width: var(--brand-icon-size);
+  height: var(--brand-icon-size);
+  overflow: hidden;
   flex-shrink: 0;
+  display: inline-block;
+  border-radius: calc(var(--brand-icon-size) * 0.28);
+}
+
+.brand-logo__icon-img {
+  display: block;
+  height: var(--brand-icon-size);
+  width: auto;
+  transform: scale(4.2);
+  transform-origin: left center;
+}
+
+.brand-logo__full {
+  display: block;
+  width: auto;
+  height: auto;
+  max-height: 44px;
 }
 
 .brand-logo__text {
@@ -21,7 +41,6 @@
   font-size: var(--font-16);
 }
 
-.brand-logo--sm .brand-logo__img {
-  width: 24px;
-  height: 24px;
+.brand-logo--sm .brand-logo__icon {
+  --brand-icon-size: 24px;
 }

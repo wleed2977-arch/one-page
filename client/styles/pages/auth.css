@@ -21,6 +21,10 @@
   color: var(--color-text-primary);
 }
 
+.auth-nav__brand .brand-logo__full {
+  max-height: 36px;
+}
+
 .auth-layout {
   flex: 1;
   display: grid;
