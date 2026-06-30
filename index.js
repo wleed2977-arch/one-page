@@ -5,12 +5,12 @@ import { execSync } from 'child_process';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const serverDir = path.join(__dirname, 'server');
-const dbPath = path.join(serverDir, 'prisma', 'dev.db');
 
 dotenv.config({ path: path.join(serverDir, '.env') });
 
-if (!process.env.DATABASE_URL) {
-  process.env.DATABASE_URL = `file:${dbPath}`;
+if (!process.env.DATABASE_URL && process.env.NODE_ENV !== 'production') {
+  process.env.DATABASE_URL =
+    'postgresql://onepage:onepagepassword@localhost:5432/onepagedb?schema=public';
 }
 
 if (!process.env.CLIENT_URL && process.env.RENDER_EXTERNAL_URL) {
