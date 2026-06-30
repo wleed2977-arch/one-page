@@ -60,14 +60,17 @@ export const DashboardPage = {
         analyticsApi.getMyAnalytics(),
         pagesApi.getMyPage(),
       ]);
-      stats = analyticsRes.data;
-      slug = pageRes.data.page?.slug || '';
-      themeName = pageRes.data.page?.themeName || 'light';
-    } catch {
-      /* defaults */
+      stats = analyticsRes.data || stats;
+      slug = pageRes.data?.page?.slug || '';
+      themeName = pageRes.data?.page?.themeName || 'light';
+    } catch (err) {
+      showToast(err.message || 'Could not load dashboard data', 'error');
     }
 
-    document.getElementById('dashboard-stats').innerHTML = `
+    const statsEl = document.getElementById('dashboard-stats');
+    if (!statsEl) return;
+
+    statsEl.innerHTML = `
       <div class="card"><div class="card-body">
         <p class="dashboard-stat-label">Total Views (7 days)</p>
         <h3>${stats.totalViews}</h3>

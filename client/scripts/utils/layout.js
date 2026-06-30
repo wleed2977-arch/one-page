@@ -20,7 +20,7 @@ export const dashboardNav = (active = 'dashboard') => `
 `;
 
 export const bindDashboardLayout = () => {
-  lucide.createIcons();
+  if (typeof lucide !== 'undefined') lucide.createIcons();
 
   document.querySelectorAll('[data-link]').forEach((link) => {
     link.addEventListener('click', (e) => {

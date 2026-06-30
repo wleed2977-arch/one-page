@@ -72,9 +72,12 @@ const __dirname = path.dirname(__filename);
 
 const clientDist = path.join(__dirname, '../../client/dist');
 const clientSource = path.join(__dirname, '../../client');
-const staticRoot = fs.existsSync(path.join(clientDist, 'index.html'))
-  ? clientDist
-  : clientSource;
+const hasDist = fs.existsSync(path.join(clientDist, 'index.html'));
+const staticRoot = hasDist ? clientDist : clientSource;
+
+if (ENV.NODE_ENV === 'production' && !hasDist) {
+  console.warn('[OnePage] client/dist missing — run "npm run build" before deploying.');
+}
 
 app.use('/uploads', express.static(path.join(__dirname, '../uploads')));
 app.use(express.static(staticRoot));

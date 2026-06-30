@@ -1,4 +1,6 @@
 // Centralized HTTP Client
+const REQUEST_TIMEOUT_MS = 30000;
+
 export const http = {
   async request(endpoint, options = {}) {
     const url = `/api/v1${endpoint}`;
@@ -15,16 +17,25 @@ export const http = {
       finalOptions.body = JSON.stringify(options.body);
     }
 
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), REQUEST_TIMEOUT_MS);
+    finalOptions.signal = controller.signal;
+
     let response;
     try {
       response = await fetch(url, finalOptions);
     } catch (error) {
+      if (error.name === 'AbortError') {
+        throw new Error('Request timed out. The server may be waking up — try again in a moment.');
+      }
       if (error instanceof TypeError) {
         throw new Error(
           'Cannot reach the server. Run "npm run dev" from the project root and keep both client and server running.'
         );
       }
       throw error;
+    } finally {
+      clearTimeout(timeoutId);
     }
 
     let data;

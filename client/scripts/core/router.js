@@ -54,7 +54,7 @@ export class Router {
       const html = await route.component.render(params);
       this.rootElement.innerHTML = html;
       if (route.component.afterRender) {
-        route.component.afterRender(params);
+        await route.component.afterRender(params);
       }
     }
   }
