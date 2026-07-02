@@ -1,7 +1,7 @@
 import { pagesApi } from '../api/pages.api.js';
 import { dashboardNav, bindDashboardLayout } from '../utils/layout.js';
 import { showToast } from '../utils/toast.js';
-import { applyTheme } from '../utils/theme.js';
+import { applyScopedTheme } from '../utils/theme.js';
 import { renderThemeCards } from '../utils/themes.config.js';
 import { createWidget } from '../widgets/index.js';
 
@@ -43,10 +43,19 @@ export const AppearancePage = {
     const container = document.getElementById('appearance-preview');
     if (!container) return;
     container.innerHTML = '';
-    applyTheme(AppearancePage.selectedTheme);
+    applyScopedTheme(container, AppearancePage.selectedTheme);
 
     if (!AppearancePage.savedWidgets.length) {
-      container.innerHTML = '<p class="appearance-preview-empty">Add widgets in the Builder to see a preview.</p>';
+      container.innerHTML = `
+        <div class="empty-state appearance-preview-empty">
+          <div class="empty-state__illustration" aria-hidden="true"></div>
+          <h3>No widgets yet</h3>
+          <p>Add your first widget in the Builder to see a live preview here.</p>
+          <button type="button" class="btn btn-primary" id="appearance-go-builder">Open Builder</button>
+        </div>`;
+      document.getElementById('appearance-go-builder')?.addEventListener('click', () => {
+        window.appRouter.navigate('/builder');
+      });
       return;
     }
 
@@ -70,7 +79,6 @@ export const AppearancePage = {
       AppearancePage.selectedTheme = res.data.page?.themeName || 'light';
       AppearancePage.savedWidgets = res.data.page?.widgets || [];
       document.getElementById('appearance-theme-grid').innerHTML = renderThemeCards(AppearancePage.selectedTheme);
-      applyTheme(AppearancePage.selectedTheme);
     } catch {
       /* defaults */
     }
@@ -81,7 +89,7 @@ export const AppearancePage = {
       const card = e.target.closest('[data-theme]');
       if (!card) return;
       AppearancePage.selectedTheme = card.dataset.theme;
-      applyTheme(AppearancePage.selectedTheme);
+      applyScopedTheme(container, AppearancePage.selectedTheme);
       document.querySelectorAll('#appearance-theme-grid [data-theme]').forEach((c) => c.classList.remove('selected'));
       card.classList.add('selected');
       AppearancePage.renderPreview();

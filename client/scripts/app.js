@@ -13,6 +13,7 @@ import { AnalyticsPage } from './pages/analytics.page.js';
 import { SettingsPage } from './pages/settings.page.js';
 import { AdminPage } from './pages/admin.page.js';
 import { PublicPage } from './pages/public.page.js';
+import { applyAppBrand } from './utils/theme.js';
 
 window.appState = state;
 
@@ -89,4 +90,7 @@ const initApp = () => {
   window.appRouter.handleRoute();
 };
 
-document.addEventListener('DOMContentLoaded', initApp);
+document.addEventListener('DOMContentLoaded', () => {
+  applyAppBrand();
+  initApp();
+});

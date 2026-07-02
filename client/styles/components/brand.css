@@ -10,18 +10,16 @@
   --brand-icon-size: 36px;
   width: var(--brand-icon-size);
   height: var(--brand-icon-size);
-  overflow: hidden;
   flex-shrink: 0;
-  display: inline-block;
-  border-radius: calc(var(--brand-icon-size) * 0.28);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .brand-logo__icon-img {
   display: block;
+  width: var(--brand-icon-size);
   height: var(--brand-icon-size);
-  width: auto;
-  transform: scale(4.2);
-  transform-origin: left center;
 }
 
 .brand-logo__full {
@@ -33,8 +31,9 @@
 
 .brand-logo__text {
   font-size: var(--font-18);
-  font-weight: var(--font-bold);
+  font-weight: var(--font-semibold);
   letter-spacing: -0.03em;
+  font-family: var(--font-primary);
 }
 
 .brand-logo--sm .brand-logo__text {

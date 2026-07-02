@@ -2,7 +2,7 @@ import { onboardingApi } from '../api/onboarding.api.js';
 import { refreshAuthUser } from '../utils/authRedirect.js';
 import { createWidget } from '../widgets/index.js';
 import { showToast } from '../utils/toast.js';
-import { applyTheme } from '../utils/theme.js';
+import { applyScopedTheme } from '../utils/theme.js';
 
 import { THEMES, renderThemeCards } from '../utils/themes.config.js';
 
@@ -84,7 +84,6 @@ export const OnboardingPage = {
     else content.innerHTML = OnboardingPage.step4HTML();
 
     OnboardingPage.bindStepEvents();
-    if (OnboardingPage.step >= 3) applyTheme(OnboardingPage.formData.theme);
     if (OnboardingPage.step === 4) OnboardingPage.renderPreview();
   },
 
@@ -176,7 +175,6 @@ export const OnboardingPage = {
     document.querySelectorAll('.onboarding-theme-card').forEach((card) => {
       card.addEventListener('click', () => {
         OnboardingPage.formData.theme = card.dataset.theme;
-        applyTheme(card.dataset.theme);
         document.querySelectorAll('.onboarding-theme-card').forEach((c) => c.classList.remove('selected'));
         card.classList.add('selected');
       });
@@ -215,7 +213,7 @@ export const OnboardingPage = {
     const container = document.getElementById('onboarding-preview');
     if (!container) return;
     container.innerHTML = '';
-    applyTheme(OnboardingPage.formData.theme);
+    applyScopedTheme(container, OnboardingPage.formData.theme);
 
     const widgets = buildPreviewWidgets(OnboardingPage.formData);
     widgets.forEach((w) => {
@@ -248,7 +246,7 @@ export const OnboardingPage = {
       sessionStorage.setItem('onboardingJustFinished', '1');
       window.appRouter.navigate(redirectTo);
     } catch (err) {
-      showToast(err.message || 'Something went wrong', 'error');
+      showToast(err.message || 'Could not finish setup. Check your connection and try again.', 'error');
       if (btn) btn.disabled = false;
       if (builderBtn) builderBtn.disabled = false;
     }

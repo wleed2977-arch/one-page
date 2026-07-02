@@ -1,6 +1,6 @@
 /* Cards */
 .card {
-  background-color: var(--color-surface);
+  background-color: var(--color-surface-elevated, var(--color-surface));
   border: 1px solid var(--color-border);
   border-radius: var(--radius-card);
   box-shadow: var(--shadow-sm);
@@ -8,16 +8,16 @@
 }
 
 .card-header {
-  padding: var(--spacing-16) var(--spacing-24);
+  padding: var(--spacing-20) var(--spacing-32);
   border-bottom: 1px solid var(--color-border);
 }
 
 .card-body {
-  padding: var(--spacing-24);
+  padding: var(--spacing-32);
 }
 
 .card-footer {
-  padding: var(--spacing-16) var(--spacing-24);
+  padding: var(--spacing-20) var(--spacing-32);
   border-top: 1px solid var(--color-border);
   background-color: var(--color-background);
 }

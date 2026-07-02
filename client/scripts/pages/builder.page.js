@@ -1,14 +1,14 @@
 import { WIDGET_LABELS, WIDGET_ICONS, createWidget, widgetToPayload } from '../widgets/index.js';
 import { pagesApi } from '../api/pages.api.js';
 import { showToast } from '../utils/toast.js';
-import { applyTheme } from '../utils/theme.js';
+import { applyScopedTheme } from '../utils/theme.js';
 import { renderPropertiesPanel } from '../builder/propertiesPanel.js';
 
 const EMPTY_STATE_HTML = `
   <div class="empty-state" id="canvas-empty">
-    <i data-lucide="mouse-pointer-click"></i>
-    <h3>No widgets added yet</h3>
-    <p>Select a widget from the sidebar to add it to your page.</p>
+    <div class="empty-state__illustration" aria-hidden="true"></div>
+    <h3>No widgets yet</h3>
+    <p>Select a widget from the sidebar to start building your page.</p>
   </div>
 `;
 
@@ -196,7 +196,7 @@ export const BuilderPage = {
       if (viewBtn && BuilderPage.pageSlug) viewBtn.hidden = false;
 
       if (page.themeName) {
-        applyTheme(page.themeName);
+        applyScopedTheme(canvas, page.themeName);
       }
 
       if (mountWidgets(page.widgets, openProperties)) {

@@ -1,13 +1,18 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none">
   <defs>
-    <linearGradient id="fav-grad" x1="2" y1="2" x2="30" y2="30" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#4F46E5"/>
-      <stop offset="1" stop-color="#7C3AED"/>
+    <linearGradient id="fav-grad" x1="6" y1="4" x2="26" y2="28" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0F172A"/>
+      <stop offset="1" stop-color="#06B6D4"/>
     </linearGradient>
   </defs>
-  <rect width="32" height="32" rx="8" fill="url(#fav-grad)"/>
-  <rect x="8" y="8" width="14" height="2.5" rx="1.25" fill="#fff" fill-opacity="0.95"/>
-  <rect x="8" y="12.5" width="11" height="1.5" rx="0.75" fill="#fff" fill-opacity="0.55"/>
-  <rect x="8" y="15.5" width="12" height="1.5" rx="0.75" fill="#fff" fill-opacity="0.45"/>
-  <rect x="8" y="21" width="9" height="4" rx="2" fill="#fff" fill-opacity="0.9"/>
+  <path
+    d="M11 9h10a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H11a2 2 0 0 1-2-2V11a2 2 0 0 1 2-2Z"
+    stroke="url(#fav-grad)"
+    stroke-width="2.2"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    stroke-dasharray="42 14"
+    stroke-dashoffset="-3"
+  />
+  <circle cx="22" cy="10" r="2" fill="#06B6D4"/>
 </svg>

@@ -1,29 +1,34 @@
-html[data-theme="dark"] {
-  --color-primary: #818cf8;
-  --color-secondary: #a5b4fc;
+html[data-theme="dark"],
+[data-theme="dark"] {
+  --color-primary: #ffffff;
+  --color-accent: #06b6d4;
+  --color-accent-hover: #06B6D4;
   --color-background: #09090b;
   --color-surface: #18181b;
   --color-surface-elevated: #27272a;
-  --color-border: #3f3f46;
-  --color-text-primary: #fafafa;
+  --color-border: #27272a;
+  --color-text-primary: #ffffff;
   --color-text-secondary: #a1a1aa;
-  --theme-hero-bg: linear-gradient(180deg, #1f1f23 0%, #09090b 100%);
-  --theme-page-bg: radial-gradient(ellipse 120% 80% at 50% -20%, #1f1f23 0%, #09090b 55%);
-  --theme-accent-glow: rgba(129, 140, 248, 0.2);
+  --theme-hero-bg: linear-gradient(180deg, #18181b 0%, #09090b 100%);
+  --theme-page-bg: radial-gradient(ellipse 120% 80% at 50% -20%, #18181b 0%, #09090b 55%);
+  --theme-accent-glow: rgba(6, 182, 212, 0.2);
   --theme-canvas-shadow: 0 24px 48px -12px rgba(0, 0, 0, 0.5);
   --theme-card-shadow: 0 0 0 1px rgba(255, 255, 255, 0.06);
   --theme-section-alt: #0f0f11;
 }
 
-html[data-theme="dark"] .public-page__canvas {
-  border: 1px solid #3f3f46;
-  box-shadow: var(--theme-canvas-shadow), 0 0 0 1px rgba(129, 140, 248, 0.08);
+html[data-theme="dark"] .public-page__canvas,
+[data-theme="dark"] .public-page__canvas {
+  border: 1px solid #27272a;
+  box-shadow: var(--theme-canvas-shadow), 0 0 0 1px rgba(6, 182, 212, 0.08);
 }
 
-html[data-theme="dark"] .widget-projects .project-card {
+html[data-theme="dark"] .widget-projects .project-card,
+[data-theme="dark"] .widget-projects .project-card {
   box-shadow: var(--theme-card-shadow);
 }
 
-html[data-theme="dark"] .widget-projects .project-card:hover {
-  box-shadow: 0 0 0 1px rgba(129, 140, 248, 0.3), 0 8px 24px rgba(0, 0, 0, 0.3);
+html[data-theme="dark"] .widget-projects .project-card:hover,
+[data-theme="dark"] .widget-projects .project-card:hover {
+  box-shadow: 0 0 0 1px rgba(6, 182, 212, 0.3), 0 8px 24px rgba(0, 0, 0, 0.3);
 }

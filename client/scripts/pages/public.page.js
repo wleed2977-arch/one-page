@@ -1,7 +1,7 @@
 import { pagesApi } from '../api/pages.api.js';
 import { analyticsApi } from '../api/analytics.api.js';
 import { createWidget } from '../widgets/index.js';
-import { applyTheme } from '../utils/theme.js';
+import { applyPublicTheme, applyAppBrand } from '../utils/theme.js';
 
 const getPageTitle = (widgets, slug) => {
   const hero = widgets?.find((w) => w.type === 'hero');
@@ -74,7 +74,7 @@ export const PublicPage = {
     try {
       const res = await pagesApi.getPageBySlug(slug);
       const page = res.data.page;
-      applyTheme(page.themeName || 'light');
+      applyPublicTheme(page.themeName || 'light');
 
       const pageName = getPageTitle(page.widgets, slug);
       document.title = `${pageName} | Portfolio`;
@@ -86,7 +86,12 @@ export const PublicPage = {
       canvas.innerHTML = '';
 
       if (!page.widgets?.length) {
-        canvas.innerHTML = '<div class="empty-state"><p>This page is empty.</p></div>';
+        canvas.innerHTML = `
+          <div class="empty-state">
+            <div class="empty-state__illustration" aria-hidden="true"></div>
+            <h3>This page is empty</h3>
+            <p>The owner has not added any content yet.</p>
+          </div>`;
       } else {
         page.widgets.forEach((w, index) => {
           const instance = createWidget(w.type, w.data);
@@ -114,15 +119,21 @@ export const PublicPage = {
 
       analyticsApi.recordView(slug).catch(() => {});
     } catch {
-      applyTheme('light');
+      applyAppBrand();
       document.title = 'Page not found | OnePage';
       document.getElementById('public-page-title').textContent = 'Page not found';
       document.getElementById('public-canvas').innerHTML = `
-        <div class="empty-state" style="padding:4rem;">
+        <div class="empty-state">
+          <div class="empty-state__illustration" aria-hidden="true"></div>
           <h3>Page not found</h3>
-          <p>This page does not exist.</p>
+          <p>This link does not exist or the page was removed.</p>
+          <a href="/" class="btn btn-primary" data-link>Go to OnePage</a>
         </div>
       `;
+      document.querySelector('.public-page [data-link]')?.addEventListener('click', (e) => {
+        e.preventDefault();
+        window.appRouter.navigate('/');
+      });
     }
   },
 };

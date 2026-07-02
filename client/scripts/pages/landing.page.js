@@ -84,10 +84,10 @@ export const LandingPage = {
                 <span class="landing-eyebrow__dot"></span>
                 Personal website builder
               </span>
-              <h1>Your portfolio, <span class="landing-gradient-text">one page</span> away</h1>
-              <p>Build a clean online CV in minutes. Pick a theme, add your work, and share a link recruiters will remember.</p>
+              <h1>Build your <span class="landing-gradient-text">online identity</span></h1>
+              <p>Your story. One beautiful page. Customize your style and publish in minutes — no code required.</p>
               <div class="landing-hero__actions">
-                <a href="/register" class="btn btn-primary" data-link>Get Started Free</a>
+                <a href="/register" class="btn btn-primary" data-link>Build your page</a>
                 <a href="/login" class="btn btn-secondary" data-link>Sign in</a>
               </div>
               <div class="landing-stats landing-hero-enter landing-hero-enter--delay">
@@ -134,18 +134,17 @@ export const LandingPage = {
           </div>
         </section>
 
-        <section class="landing-marquee" aria-hidden="true">
+        <section class="landing-marquee" aria-label="Highlights">
           <div class="landing-marquee__track">
-            <span>Portfolio</span><span>CV</span><span>Personal Brand</span><span>No Code</span><span>Visual Builder</span><span>Shareable Link</span>
-            <span>Portfolio</span><span>CV</span><span>Personal Brand</span><span>No Code</span><span>Visual Builder</span><span>Shareable Link</span>
+            <span>Identity</span><span>Portfolio</span><span>Professional</span><span>Minimal</span><span>Share</span><span>Build</span>
           </div>
         </section>
 
         <section class="landing-section landing-section--muted">
           <div class="landing-container">
             <div class="landing-section__head landing-reveal">
-              <h2>Everything you need to stand out</h2>
-              <p>A focused toolkit for developers who want a professional page without maintaining a full website.</p>
+              <h2>Everything you need to share your work</h2>
+              <p>A focused toolkit for building a personal page without maintaining a full website.</p>
             </div>
             <div class="landing-features">
               <article class="landing-feature landing-reveal landing-reveal--delay-1">
@@ -174,7 +173,7 @@ export const LandingPage = {
               <p>Switch themes in one click — from minimal light to bold glass and dark modes.</p>
             </div>
             <div class="landing-themes landing-reveal">
-              <div class="landing-theme-chip" style="--chip-bg: linear-gradient(165deg, #fff 0%, #eef2ff 100%)"><span>Light</span></div>
+              <div class="landing-theme-chip" style="--chip-bg: linear-gradient(165deg, #ffffff 0%, #f8fafc 100%)"><span>Light</span></div>
               <div class="landing-theme-chip" style="--chip-bg: linear-gradient(180deg, #1f1f23, #09090b)"><span>Dark</span></div>
               <div class="landing-theme-chip" style="--chip-bg: linear-gradient(160deg, #e0e7ff, #fce7f3)"><span>Glass</span></div>
               <div class="landing-theme-chip" style="--chip-bg: linear-gradient(180deg, #111, #000)"><span>Linear</span></div>
@@ -188,7 +187,7 @@ export const LandingPage = {
           <div class="landing-container">
             <div class="landing-section__head landing-reveal">
               <h2>Live in three steps</h2>
-              <p>From signup to a shareable portfolio — usually under ten minutes.</p>
+              <p>From signup to a shareable page — usually under ten minutes.</p>
             </div>
             <ol class="landing-steps landing-reveal">
               <li class="landing-step">
@@ -211,9 +210,9 @@ export const LandingPage = {
           <div class="landing-container">
             <div class="landing-cta__inner landing-reveal">
               ${brandFull(56, 'landing-cta__logo')}
-              <h2>Start building today</h2>
-              <p>Free to get started. Your portfolio page is a few clicks away.</p>
-              <a href="/register" class="btn btn-primary" data-link>Create your page</a>
+              <h2>Build your page today</h2>
+              <p>Free to start. Share your work in minutes.</p>
+              <a href="/register" class="btn btn-primary" data-link>Get started</a>
             </div>
           </div>
         </section>
@@ -221,7 +220,7 @@ export const LandingPage = {
 
       <footer class="landing-footer">
         ${brandMark({ className: 'brand-logo brand-logo--sm', size: 28 })}
-        <p>Personal website builder for developers</p>
+        <p>Build your online identity.</p>
       </footer>
     </div>
   `,

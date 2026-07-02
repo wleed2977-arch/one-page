@@ -46,7 +46,7 @@ export const http = {
     }
 
     if (!response.ok) {
-      throw new Error(data.message || 'Something went wrong');
+      throw new Error(data.message || 'The request failed. Check your input and try again.');
     }
 
     return data;

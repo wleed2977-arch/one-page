@@ -48,7 +48,7 @@
 }
 
 .public-page__brand:hover {
-  color: var(--color-primary);
+  color: var(--color-accent);
 }
 
 .public-page__canvas .empty-state {

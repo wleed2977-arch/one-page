@@ -1,8 +1,10 @@
+import { applyAppBrand } from '../utils/theme.js';
+
 export class Router {
   constructor(routes) {
     this.routes = routes;
     this.rootElement = document.getElementById('app');
-    this.defaultTitle = 'OnePage | Modern Personal Website Builder';
+    this.defaultTitle = 'OnePage | Build your online identity.';
     window.addEventListener('popstate', () => this.handleRoute());
   }
 
@@ -50,6 +52,9 @@ export class Router {
     }
 
     if (route.component) {
+      const isPublicProfile = route.path === '/p/:slug';
+      if (!isPublicProfile) applyAppBrand();
+
       document.title = this.defaultTitle;
       const html = await route.component.render(params);
       this.rootElement.innerHTML = html;

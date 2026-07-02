@@ -1,4 +1,5 @@
-html[data-theme="forest"] {
+html[data-theme="forest"],
+[data-theme="forest"] {
   --color-primary: #10b981;
   --color-secondary: #34d399;
   --color-background: #0c1222;
@@ -17,16 +18,19 @@ html[data-theme="forest"] {
   --radius-card: 20px;
 }
 
-html[data-theme="forest"] .widget-section-title::after {
+html[data-theme="forest"] .widget-section-title::after,
+[data-theme="forest"] .widget-section-title::after {
   background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
   width: 48px;
   border-radius: 4px;
 }
 
-html[data-theme="forest"] .widget-skills .skill-fill {
+html[data-theme="forest"] .widget-skills .skill-fill,
+[data-theme="forest"] .widget-skills .skill-fill {
   background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
 }
 
-html[data-theme="forest"] .public-page__canvas {
+html[data-theme="forest"] .public-page__canvas,
+[data-theme="forest"] .public-page__canvas {
   border: 1px solid #334155;
 }

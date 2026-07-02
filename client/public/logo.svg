@@ -1,19 +1,18 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" fill="none" role="img" aria-label="OnePage">
   <defs>
-    <linearGradient id="op-grad" x1="4" y1="2" x2="36" y2="38" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#4F46E5"/>
-      <stop offset="1" stop-color="#7C3AED"/>
-    </linearGradient>
-    <linearGradient id="op-shine" x1="0" y1="0" x2="40" y2="40" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#fff" stop-opacity="0.35"/>
-      <stop offset="0.45" stop-color="#fff" stop-opacity="0"/>
+    <linearGradient id="op-grad" x1="8" y1="6" x2="32" y2="34" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0F172A"/>
+      <stop offset="1" stop-color="#06B6D4"/>
     </linearGradient>
   </defs>
-  <rect width="40" height="40" rx="11" fill="url(#op-grad)"/>
-  <rect width="40" height="40" rx="11" fill="url(#op-shine)"/>
-  <rect x="11" y="10" width="18" height="3" rx="1.5" fill="#fff" fill-opacity="0.95"/>
-  <rect x="11" y="16" width="14" height="2" rx="1" fill="#fff" fill-opacity="0.55"/>
-  <rect x="11" y="20" width="16" height="2" rx="1" fill="#fff" fill-opacity="0.45"/>
-  <rect x="11" y="27" width="11" height="5" rx="2.5" fill="#fff" fill-opacity="0.9"/>
-  <path d="M28 8h4v4l-4-4z" fill="#fff" fill-opacity="0.25"/>
+  <path
+    d="M14 11h12a3 3 0 0 1 3 3v12a3 3 0 0 1-3 3H14a3 3 0 0 1-3-3V14a3 3 0 0 1 3-3Z"
+    stroke="url(#op-grad)"
+    stroke-width="2.6"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    stroke-dasharray="52 18"
+    stroke-dashoffset="-4"
+  />
+  <circle cx="27" cy="13" r="2.5" fill="#06B6D4"/>
 </svg>

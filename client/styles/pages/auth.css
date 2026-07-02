@@ -2,7 +2,7 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  background: linear-gradient(165deg, #f8fafc 0%, #eef2ff 50%, #f8fafc 100%);
+  background: linear-gradient(165deg, #ffffff 0%, #f8fafc 50%, #ecfeff 100%);
 }
 
 .auth-nav {
@@ -71,7 +71,7 @@
 .auth-perks li i {
   width: 18px;
   height: 18px;
-  color: var(--color-primary);
+  color: var(--color-accent);
   flex-shrink: 0;
 }
 
@@ -114,7 +114,7 @@
 .auth-footer-link {
   text-align: center;
   font-size: var(--font-14);
-  color: var(--color-primary);
+  color: var(--color-accent);
 }
 
 @media (max-width: 768px) {

@@ -20,7 +20,7 @@ const authShell = (formContent, footerHtml) => `
     <div class="auth-layout">
       <div class="auth-branding">
         <h1>Welcome back</h1>
-        <p>Sign in to edit your portfolio, pick themes, and share your public page.</p>
+        <p>Sign in to edit your page, customize your style, and share your link.</p>
         ${AUTH_PERKS}
       </div>
       <div class="auth-card">

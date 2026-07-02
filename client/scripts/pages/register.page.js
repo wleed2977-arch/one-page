@@ -20,8 +20,8 @@ export const RegisterPage = {
       </nav>
       <div class="auth-layout">
         <div class="auth-branding">
-          <h1>Create your page</h1>
-          <p>Build a professional portfolio in minutes. Perfect for your CV and personal brand.</p>
+          <h1>Build your page</h1>
+          <p>Build your online identity in minutes. Simple, elegant, and ready to share.</p>
           ${AUTH_PERKS}
         </div>
         <div class="auth-card">

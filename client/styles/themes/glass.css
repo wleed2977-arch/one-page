@@ -1,4 +1,5 @@
-html[data-theme="glass"] {
+html[data-theme="glass"],
+[data-theme="glass"] {
   --color-primary: #8b5cf6;
   --color-secondary: #a78bfa;
   --color-background: #e8eef5;
@@ -20,7 +21,12 @@ html[data-theme="glass"] {
 
 html[data-theme="glass"] .card,
 html[data-theme="glass"] .builder-preview-canvas,
-html[data-theme="glass"] .public-page__canvas {
+html[data-theme="glass"] .public-page__canvas,
+[data-theme="glass"] .card,
+[data-theme="glass"] .builder-preview-canvas,
+[data-theme="glass"] .public-page__canvas,
+[data-theme="glass"] .appearance-preview,
+[data-theme="glass"] .onboarding-preview {
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
 }
@@ -31,24 +37,36 @@ html[data-theme="glass"] .widget-skills,
 html[data-theme="glass"] .widget-gallery,
 html[data-theme="glass"] .widget-social,
 html[data-theme="glass"] .widget-contact,
-html[data-theme="glass"] .widget-resume {
+html[data-theme="glass"] .widget-resume,
+[data-theme="glass"] .widget-about,
+[data-theme="glass"] .widget-projects,
+[data-theme="glass"] .widget-skills,
+[data-theme="glass"] .widget-gallery,
+[data-theme="glass"] .widget-social,
+[data-theme="glass"] .widget-contact,
+[data-theme="glass"] .widget-resume {
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
 }
 
-html[data-theme="glass"] .widget-projects .project-card {
+html[data-theme="glass"] .widget-projects .project-card,
+[data-theme="glass"] .widget-projects .project-card {
   background: rgba(255, 255, 255, 0.5);
   border-color: rgba(255, 255, 255, 0.6);
 }
 
-html[data-theme="glass"] .public-page__canvas {
+html[data-theme="glass"] .public-page__canvas,
+[data-theme="glass"] .public-page__canvas {
   border: 1px solid rgba(255, 255, 255, 0.6);
 }
 
 @media (max-width: 768px) {
   html[data-theme="glass"] .card,
   html[data-theme="glass"] .builder-preview-canvas,
-  html[data-theme="glass"] .public-page__canvas {
+  html[data-theme="glass"] .public-page__canvas,
+  [data-theme="glass"] .card,
+  [data-theme="glass"] .builder-preview-canvas,
+  [data-theme="glass"] .public-page__canvas {
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
   }
@@ -59,7 +77,14 @@ html[data-theme="glass"] .public-page__canvas {
   html[data-theme="glass"] .widget-gallery,
   html[data-theme="glass"] .widget-social,
   html[data-theme="glass"] .widget-contact,
-  html[data-theme="glass"] .widget-resume {
+  html[data-theme="glass"] .widget-resume,
+  [data-theme="glass"] .widget-about,
+  [data-theme="glass"] .widget-projects,
+  [data-theme="glass"] .widget-skills,
+  [data-theme="glass"] .widget-gallery,
+  [data-theme="glass"] .widget-social,
+  [data-theme="glass"] .widget-contact,
+  [data-theme="glass"] .widget-resume {
     backdrop-filter: none;
   }
 }

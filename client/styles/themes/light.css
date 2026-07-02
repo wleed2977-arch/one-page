@@ -1,26 +1,30 @@
-html[data-theme="light"] {
-  --color-primary: #4f46e5;
-  --color-secondary: #6366f1;
-  --color-background: #f1f5f9;
-  --color-surface: #ffffff;
+html[data-theme="light"],
+[data-theme="light"] {
+  --color-primary: #0f172a;
+  --color-accent: #06b6d4;
+  --color-accent-hover: #06B6D4;
+  --color-background: #ffffff;
+  --color-surface: #f8fafc;
   --color-surface-elevated: #ffffff;
   --color-border: #e2e8f0;
   --color-text-primary: #0f172a;
   --color-text-secondary: #64748b;
-  --theme-hero-bg: linear-gradient(165deg, #ffffff 0%, #f8fafc 45%, #eef2ff 100%);
-  --theme-page-bg: linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%);
-  --theme-accent-glow: rgba(79, 70, 229, 0.14);
+  --theme-hero-bg: linear-gradient(165deg, #ffffff 0%, #f8fafc 45%, #ecfeff 100%);
+  --theme-page-bg: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+  --theme-accent-glow: rgba(6, 182, 212, 0.14);
   --theme-canvas-shadow: 0 24px 48px -12px rgba(15, 23, 42, 0.1);
   --theme-card-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
   --theme-section-alt: #f8fafc;
 }
 
-html[data-theme="light"] .public-page__canvas {
+html[data-theme="light"] .public-page__canvas,
+[data-theme="light"] .public-page__canvas {
   border: 1px solid #e2e8f0;
 }
 
-html[data-theme="light"] .widget-hero .widget-headline {
-  background: linear-gradient(135deg, #0f172a 0%, #3730a3 100%);
+html[data-theme="light"] .widget-hero .widget-headline,
+[data-theme="light"] .widget-hero .widget-headline {
+  background: linear-gradient(135deg, #0f172a 0%, #0e7490 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;

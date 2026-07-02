@@ -11,7 +11,7 @@
 
 .toast {
   padding: var(--spacing-12) var(--spacing-16);
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-button);
   color: #fff;
   font-size: var(--font-14);
   font-weight: var(--font-medium);
@@ -24,7 +24,7 @@
 
 .toast.success { background-color: var(--color-success); }
 .toast.error { background-color: var(--color-danger); }
-.toast.info { background-color: var(--color-primary); }
+.toast.info { background-color: var(--color-accent); }
 
 @keyframes slideIn {
   from { transform: translateX(100%); opacity: 0; }

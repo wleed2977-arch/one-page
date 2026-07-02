@@ -1,4 +1,5 @@
-html[data-theme="ocean"] {
+html[data-theme="ocean"],
+[data-theme="ocean"] {
   --color-primary: #0284c7;
   --color-secondary: #38bdf8;
   --color-background: #e0f2fe;
@@ -16,19 +17,23 @@ html[data-theme="ocean"] {
   --radius-card: 18px;
 }
 
-html[data-theme="ocean"] .widget-hero {
+html[data-theme="ocean"] .widget-hero,
+[data-theme="ocean"] .widget-hero {
   border-bottom-color: #bae6fd;
 }
 
-html[data-theme="ocean"] .widget-projects .project-card {
+html[data-theme="ocean"] .widget-projects .project-card,
+[data-theme="ocean"] .widget-projects .project-card {
   border-color: #bae6fd;
   background: #f0f9ff;
 }
 
-html[data-theme="ocean"] .widget-skills .skill-fill {
+html[data-theme="ocean"] .widget-skills .skill-fill,
+[data-theme="ocean"] .widget-skills .skill-fill {
   background: linear-gradient(90deg, #0284c7, #38bdf8);
 }
 
-html[data-theme="ocean"] .public-page__canvas {
+html[data-theme="ocean"] .public-page__canvas,
+[data-theme="ocean"] .public-page__canvas {
   border: 1px solid #bae6fd;
 }

@@ -8,9 +8,11 @@ export const AnalyticsPage = {
       <main class="dashboard-content">
         <div class="dashboard-header"><h2>Analytics</h2></div>
         <div id="analytics-stats" class="dashboard-stats-grid"></div>
-        <div class="analytics-chart" style="margin-top: 2rem; background: var(--color-surface); padding: 1.5rem; border-radius: var(--radius-lg); border: 1px solid var(--color-border);">
-          <h3 style="margin-bottom: 1.5rem;">Traffic (Last 7 Days)</h3>
-          <canvas id="trafficChart" style="width: 100%; height: 300px;"></canvas>
+        <div class="card analytics-chart-card">
+          <div class="card-body">
+          <h3 class="analytics-chart-title">Traffic (Last 7 Days)</h3>
+          <canvas id="trafficChart" class="analytics-chart-canvas"></canvas>
+          </div>
         </div>
       </main>
     </div>
@@ -54,10 +56,10 @@ export const AnalyticsPage = {
           datasets: [{
             label: 'Page Views',
             data: (data.daily || []).map((d) => d.views),
-            borderColor: '#4F46E5',
+            borderColor: '#06B6D4',
             tension: 0.4,
             fill: true,
-            backgroundColor: 'rgba(79, 70, 229, 0.1)',
+            backgroundColor: 'rgba(6, 182, 212, 0.12)',
           }],
         },
         options: { responsive: true, maintainAspectRatio: false },
