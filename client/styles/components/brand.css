@@ -20,6 +20,8 @@
   display: block;
   width: var(--brand-icon-size);
   height: var(--brand-icon-size);
+  object-fit: contain;
+  border-radius: calc(var(--brand-icon-size) * 0.22);
 }
 
 .brand-logo__full {
@@ -27,6 +29,8 @@
   width: auto;
   height: auto;
   max-height: 44px;
+  object-fit: contain;
+  border-radius: 10px;
 }
 
 .brand-logo__text {
