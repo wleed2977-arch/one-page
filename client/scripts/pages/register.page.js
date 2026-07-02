@@ -15,7 +15,7 @@ export const RegisterPage = {
   render: async () => `
     <div class="auth-page">
       <nav class="auth-nav">
-        ${brandMark({ className: 'auth-nav__brand brand-logo brand-logo--blend-light', size: 40 })}
+        ${brandMark({ className: 'auth-nav__brand brand-logo', size: 40 })}
         <a href="/login" class="btn btn-secondary btn-sm" data-link>Login</a>
       </nav>
       <div class="auth-layout">
