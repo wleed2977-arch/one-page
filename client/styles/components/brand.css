@@ -7,7 +7,7 @@
 }
 
 .brand-logo__icon {
-  --brand-icon-size: 36px;
+  --brand-icon-size: 40px;
   width: var(--brand-icon-size);
   height: var(--brand-icon-size);
   flex-shrink: 0;
@@ -25,9 +25,9 @@
 
 .brand-logo__full {
   display: block;
-  height: 44px;
+  height: 50px;
   width: auto;
-  max-height: 44px;
+  max-height: 50px;
   object-fit: contain;
 }
 
@@ -43,5 +43,5 @@
 }
 
 .brand-logo--sm .brand-logo__icon {
-  --brand-icon-size: 28px;
+  --brand-icon-size: 32px;
 }

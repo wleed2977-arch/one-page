@@ -67,7 +67,7 @@ export const LandingPage = {
       <header class="landing-header">
         <div class="landing-container">
           <nav class="landing-nav">
-            ${brandMark({ className: 'landing-logo brand-logo', size: 44 })}
+            ${brandMark({ className: 'landing-logo brand-logo', size: 52 })}
             <div class="landing-nav__links">
               <a href="/login" class="landing-nav__link" data-link>Login</a>
               <a href="/register" class="btn btn-primary" data-link>Get Started</a>
@@ -219,7 +219,7 @@ export const LandingPage = {
       </main>
 
       <footer class="landing-footer">
-        ${brandMark({ className: 'brand-logo brand-logo--sm', size: 32 })}
+        ${brandMark({ className: 'brand-logo brand-logo--sm', size: 38 })}
         <p>Build your online identity.</p>
       </footer>
     </div>

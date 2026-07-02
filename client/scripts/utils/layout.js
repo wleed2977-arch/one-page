@@ -3,7 +3,7 @@ import { brandMark } from './brand.js';
 export const dashboardNav = (active = 'dashboard') => `
   <aside class="dashboard-sidebar">
     <div style="padding: 0 1.5rem 2rem;">
-      ${brandMark({ href: '/dashboard', className: 'brand-logo brand-logo--sm', size: 30 })}
+      ${brandMark({ href: '/dashboard', className: 'brand-logo brand-logo--sm', size: 34 })}
     </div>
     <nav class="dashboard-sidebar-nav">
       <a href="/dashboard" class="dashboard-nav-item ${active === 'dashboard' ? 'active' : ''}" data-link><i data-lucide="layout-dashboard"></i> Dashboard</a>
