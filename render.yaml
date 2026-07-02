@@ -9,7 +9,7 @@ services:
     name: onepage
     runtime: node
     plan: free
-    buildCommand: npm install --include=dev && npm run build && npm run prisma:deploy -w server
+    buildCommand: npm install --include=dev && npm run build
     startCommand: npm start
     envVars:
       - key: NODE_ENV

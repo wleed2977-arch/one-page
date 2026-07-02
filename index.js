@@ -2,16 +2,14 @@ import dotenv from 'dotenv';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { execSync } from 'child_process';
+import { resolveDatabaseUrl } from './server/src/config/resolveDatabaseUrl.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const serverDir = path.join(__dirname, 'server');
 
 dotenv.config({ path: path.join(serverDir, '.env') });
 
-if (!process.env.DATABASE_URL && process.env.NODE_ENV !== 'production') {
-  process.env.DATABASE_URL =
-    'postgresql://onepage:onepagepassword@localhost:5432/onepagedb?schema=public';
-}
+resolveDatabaseUrl();
 
 if (!process.env.CLIENT_URL && process.env.RENDER_EXTERNAL_URL) {
   process.env.CLIENT_URL = process.env.RENDER_EXTERNAL_URL;
