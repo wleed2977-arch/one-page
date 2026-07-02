@@ -14,7 +14,14 @@ const serverDir = path.join(__dirname, 'server');
 
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
-dotenv.config({ path: path.join(serverDir, '.env') });
+// On Render, only use dashboard env vars — never a local server/.env (often SQLite).
+const hostedDatabaseUrl = isHostedRuntime() ? process.env.DATABASE_URL?.trim() : null;
+
+if (!isHostedRuntime()) {
+  dotenv.config({ path: path.join(serverDir, '.env') });
+} else if (hostedDatabaseUrl) {
+  process.env.DATABASE_URL = hostedDatabaseUrl;
+}
 
 ensureHostedEnv();
 resolveDatabaseUrl();
@@ -31,6 +38,11 @@ if ((process.env.NODE_ENV === 'production' || isHostedRuntime()) && !process.env
   process.env.JWT_SECRET = `onepage-render-${process.env.RENDER_SERVICE_ID || 'default'}`;
 }
 
+const migrationEnv = {
+  ...process.env,
+  DATABASE_URL: process.env.DATABASE_URL,
+};
+
 const runMigrations = async () => {
   const maxAttempts = isHostedRuntime() ? 8 : 1;
   const retryDelaysMs = [3000, 5000, 8000, 10000, 12000, 15000, 15000, 15000];
@@ -38,10 +50,10 @@ const runMigrations = async () => {
   for (let attempt = 1; attempt <= maxAttempts; attempt++) {
     try {
       console.log(`[OnePage] Running database migrations (attempt ${attempt}/${maxAttempts})...`);
-      execSync('npm run prisma:deploy -w server', {
-        cwd: __dirname,
+      execSync('npx prisma migrate deploy --schema prisma/schema.prisma', {
+        cwd: serverDir,
         stdio: 'inherit',
-        env: process.env,
+        env: migrationEnv,
       });
       console.log('[OnePage] Database migrations complete.');
       return;
@@ -52,19 +64,19 @@ const runMigrations = async () => {
       if (isLast) {
         if (isHostedRuntime()) {
           console.error(`
-[OnePage] Could not reach Postgres after ${maxAttempts} attempts.
+[OnePage] Could not run migrations after ${maxAttempts} attempts.
 
 Check on Render:
-  - DATABASE_URL uses the Postgres Internal Database URL (not localhost).
+  - DATABASE_URL is the Postgres Internal URL (postgresql://...), not file: or dev.db.
   - Web service is linked to the database (Connections tab).
-  - Postgres instance status is "Available" (free tier may need ~1 min to wake).
+  - Postgres status is "Available".
 `);
         }
         throw err;
       }
 
       const waitMs = retryDelaysMs[attempt - 1] ?? 15000;
-      console.log(`[OnePage] Retrying in ${waitMs / 1000}s (Postgres may be waking up)...`);
+      console.log(`[OnePage] Retrying in ${waitMs / 1000}s...`);
       await sleep(waitMs);
     }
   }
