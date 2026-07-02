@@ -47,3 +47,17 @@
 .brand-logo--sm .brand-logo__icon {
   --brand-icon-size: 24px;
 }
+
+/* PNG logo has a dark canvas — blend away black on light surfaces */
+.brand-logo--blend-light .brand-logo__icon-img,
+.brand-logo--blend-light .brand-logo__full {
+  mix-blend-mode: lighten;
+  transform: scale(1.2);
+  transform-origin: center;
+}
+
+.landing-cta .brand-logo__full,
+.landing-cta__logo {
+  mix-blend-mode: normal;
+  transform: none;
+}

@@ -104,8 +104,12 @@
   background: var(--color-background);
 }
 
-.landing-logo .brand-logo__full {
-  max-height: 44px;
+.landing-logo {
+  --brand-icon-size: 44px;
+}
+
+.landing-logo .brand-logo__text {
+  font-size: var(--font-20);
 }
 
 /* Hero entrance */

@@ -14,7 +14,7 @@ const AUTH_PERKS = `
 const authShell = (formContent, footerHtml) => `
   <div class="auth-page">
     <nav class="auth-nav">
-      ${brandMark({ className: 'auth-nav__brand brand-logo', variant: 'full', size: 36 })}
+      ${brandMark({ className: 'auth-nav__brand brand-logo brand-logo--blend-light', size: 40 })}
       <a href="/register" class="btn btn-primary btn-sm" data-link>Get Started</a>
     </nav>
     <div class="auth-layout">
