@@ -15,18 +15,36 @@ export const ensureHostedEnv = () => {
   }
 };
 
-const withSslIfNeeded = (url) => {
-  if (!/render\.com/i.test(url) || /sslmode=/i.test(url)) return url;
-  return `${url}${url.includes('?') ? '&' : '?'}sslmode=require`;
+const appendParam = (url, key, value) => {
+  if (new RegExp(`${key}=`, 'i').test(url)) return url;
+  return `${url}${url.includes('?') ? '&' : '?'}${key}=${value}`;
+};
+
+const normalizeDatabaseUrl = (url) => {
+  let result = url.trim();
+
+  // External Render Postgres URLs require SSL.
+  if (/render\.com/i.test(result)) {
+    result = appendParam(result, 'sslmode', 'require');
+  }
+
+  // Free-tier Postgres can take time to wake up on deploy.
+  if (isHostedRuntime()) {
+    result = appendParam(result, 'connect_timeout', '30');
+  }
+
+  result = appendParam(result, 'schema', 'public');
+  return result;
 };
 
 export const resolveDatabaseUrl = () => {
   ensureHostedEnv();
 
-  const configured = process.env.DATABASE_URL?.trim();
+  const configured =
+    process.env.DATABASE_URL?.trim() || process.env.DATABASE_INTERNAL_URL?.trim();
 
   if (configured) {
-    process.env.DATABASE_URL = withSslIfNeeded(configured);
+    process.env.DATABASE_URL = normalizeDatabaseUrl(configured);
     return process.env.DATABASE_URL;
   }
 
@@ -43,11 +61,22 @@ On Render:
 Required environment variables on Render:
   - DATABASE_URL  (from linked Postgres)
   - JWT_SECRET    (any long random string)
-  - NODE_ENV      (production) — optional if using Render hosting
+  - NODE_ENV      (production) — optional on Render
 `);
     process.exit(1);
   }
 
   process.env.DATABASE_URL = LOCAL_DATABASE_URL;
   return process.env.DATABASE_URL;
+};
+
+export const logDatabaseTarget = () => {
+  try {
+    const url = new URL(process.env.DATABASE_URL);
+    console.log(
+      `[OnePage] Database target: ${url.hostname}:${url.port || '5432'}${url.pathname}`
+    );
+  } catch {
+    console.warn('[OnePage] Could not parse DATABASE_URL for logging.');
+  }
 };
