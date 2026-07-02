@@ -9,6 +9,11 @@
 </p>
 
 <p align="center">
+  <a href="https://onepage-jrrq.onrender.com/"><strong>🚀 جرّب التطبيق مباشرة</strong></a>
+</p>
+
+<p align="center">
+  <a href="https://onepage-jrrq.onrender.com/">التجربة الحية</a> •
   <a href="#-الميزات">الميزات</a> •
   <a href="#-التقنيات-المستخدمة">التقنيات</a> •
   <a href="#-التشغيل-المحلي">التشغيل</a> •
@@ -19,6 +24,8 @@
 ---
 
 ## ما هو OnePage؟
+
+**جرّب التطبيق الآن:** [https://onepage-jrrq.onrender.com/](https://onepage-jrrq.onrender.com/) — سجّل حساباً، أكمل الإعداد، وابنِ صفحتك مباشرة من المتصفح دون تثبيت أي شيء.
 
 **OnePage** تطبيق ويب متكامل (Full-Stack) يمكّن المطورين والمبدعين من إنشاء صفحة شخصية واحدة (Portfolio) عبر:
 
@@ -88,7 +95,20 @@ onepage/
 
 ---
 
+## 🌐 التجربة الحية
+
+| | |
+|---|---|
+| **رابط التجربة** | [https://onepage-jrrq.onrender.com/](https://onepage-jrrq.onrender.com/) |
+| **ماذا تفعل** | سجّل حساباً → أكمل Onboarding → افتح Dashboard أو Builder → شارك رابط `/p/your-slug` |
+
+> النسخة المنشورة على Render قد تستغرق بضع ثوانٍ عند أول زيارة (خطة مجانية).
+
+---
+
 ## 🚀 التشغيل المحلي
+
+إذا أردت تشغيل المشروع على جهازك بدلاً من النسخة الحية:
 
 ### المتطلبات
 
@@ -267,7 +287,13 @@ MIT — انظر ملف الترخيص للتفاصيل.
   <strong>Build a professional one-page portfolio without writing HTML — visual editor, ready themes, and a shareable public link.</strong>
 </p>
 
+<p align="center">
+  <a href="https://onepage-jrrq.onrender.com/"><strong>🚀 Live Demo</strong></a>
+</p>
+
 ## What is OnePage?
+
+**Try it now:** [https://onepage-jrrq.onrender.com/](https://onepage-jrrq.onrender.com/)
 
 OnePage is a full-stack web application that lets developers and creators build a single-page portfolio with a visual widget editor, six themes, public URLs at `/p/your-slug`, first-party analytics, and ZIP export.
 
