@@ -6,9 +6,11 @@ import fs from 'fs';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.join(__dirname, '..');
 const src = path.join(root, 'logo', 'logo1.png');
-const logoOut = path.join(root, 'client', 'public', 'logo.png');
+const logoDir = path.join(root, 'client', 'public', 'logo');
+const logoOut = path.join(logoDir, 'logo1.png');
+const logoAlias = path.join(root, 'client', 'public', 'logo.png');
 const faviconOut = path.join(root, 'client', 'public', 'favicon.png');
-const logoSourceOut = path.join(root, 'logo', 'logo1-optimized.png');
+const logoSourceOut = path.join(root, 'logo', 'logo1.png');
 
 const removeBlackBackground = async (inputPath, size) => {
   const { data, info } = await sharp(inputPath)
@@ -29,18 +31,21 @@ const removeBlackBackground = async (inputPath, size) => {
   return sharp(data, {
     raw: { width: info.width, height: info.height, channels: 4 },
   })
-    .png({ compressionLevel: 9, palette: true })
+    .png({ compressionLevel: 9 })
     .toBuffer();
 };
+
+await fs.promises.mkdir(logoDir, { recursive: true });
 
 const logoBuffer = await removeBlackBackground(src, 512);
 const faviconBuffer = await removeBlackBackground(src, 64);
 
 await fs.promises.writeFile(logoOut, logoBuffer);
+await fs.promises.writeFile(logoAlias, logoBuffer);
 await fs.promises.writeFile(faviconOut, faviconBuffer);
 await fs.promises.writeFile(logoSourceOut, logoBuffer);
 
 const logoKb = (logoBuffer.length / 1024).toFixed(1);
 const faviconKb = (faviconBuffer.length / 1024).toFixed(1);
-console.log(`logo.png: ${logoKb} KB`);
+console.log(`logo/logo1.png: ${logoKb} KB`);
 console.log(`favicon.png: ${faviconKb} KB`);

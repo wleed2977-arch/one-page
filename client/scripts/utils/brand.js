@@ -1,4 +1,4 @@
-export const LOGO_SRC = '/logo.png';
+export const LOGO_SRC = '/logo/logo1.png';
 
 export const brandIcon = (size = 36) =>
   `<span class="brand-logo__icon" style="--brand-icon-size:${size}px" aria-hidden="true">

@@ -70,16 +70,21 @@ app.use('/api/v1/contact', contactRoutes);
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const clientDist = path.join(__dirname, '../../client/dist');
-const clientSource = path.join(__dirname, '../../client');
+const projectRoot = path.join(__dirname, '../..');
+const clientRoot = path.join(projectRoot, 'client');
+const clientDist = path.join(clientRoot, 'dist');
+const clientPublic = path.join(clientRoot, 'public');
+const logoAssets = path.join(projectRoot, 'logo');
 const hasDist = fs.existsSync(path.join(clientDist, 'index.html'));
-const staticRoot = hasDist ? clientDist : clientSource;
+const staticRoot = hasDist ? clientDist : clientRoot;
 
 if (ENV.NODE_ENV === 'production' && !hasDist) {
   console.warn('[OnePage] client/dist missing — run "npm run build" before deploying.');
 }
 
 app.use('/uploads', express.static(path.join(__dirname, '../uploads')));
+app.use('/logo', express.static(logoAssets));
+app.use(express.static(clientPublic));
 app.use(express.static(staticRoot));
 
 app.get('*', (req, res, next) => {
